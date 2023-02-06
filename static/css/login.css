@@ -1,0 +1,101 @@
+@charset "UTF8";
+
+        /*#headname {
+            border: 0px solid red;
+            width: 550px;
+            text-align: right;
+            margin-top: 0;
+        }*/
+        #headname {
+            width: 975px;
+            text-align: left;
+            font-size: 30px;
+            font-weight: 400;
+            margin: 0 auto;
+            padding: 2px;
+        }
+
+        #login {
+            width: 800px;
+            margin: 0 auto;
+            box-shadow: 5px 5px 25px;
+            padding: 13px;
+            text-align: center;
+        }
+
+        .info > h3 {
+            color: red;
+            font-size: 30px;
+        }
+
+        label {
+            width: 105px;
+            border: 0px solid red;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .btn {
+            width: 90px;
+            height: 50px;
+            font-size: 21px;
+            font-weight: 600;
+            background-color: rgb(48, 166, 81);
+            color: white;
+            padding: 10px;
+            outline: none;
+            border: 0;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: rgb(35, 128, 61);
+        }
+
+        .inputdiv {
+            margin: 20px 0;
+        }
+
+        .pad {
+            width: 300px;
+            padding: 8px;
+            background-color: #E8F0FE;
+            border: 0;
+            outline: 1px solid rgb(218, 218, 218);
+            border-radius: 2px;
+        }
+
+        .pad:focus {
+            outline: 1px solid red;
+        }
+
+        #btndiv {
+            width: 612px;
+            border: 0px solid red;
+            text-align: right;
+        }
+
+        #hrdiv {
+            border: 0px solid red;
+            margin-top: 40px;
+        }
+
+        #ismember {
+            width: 532px;
+            text-align: right;
+        }
+
+        #inputp {
+            border: 0px solid red;
+            width: 370px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 100;
+            margin-left: 296px;
+            margin-top: 0;
+        }
+
+        .remdiv {
+            text-align: left;
+            margin-left: 296px;
+        }

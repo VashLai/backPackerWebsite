@@ -1,0 +1,34 @@
+{% extends 'index/banner.html' %}
+{% block title %} <title>我的最愛</title> {% endblock title %}
+{% block css %}<link href="/static/css/favorite.css" rel="stylesheet">{% endblock css%}
+{% block body %}
+    <div id="headname">
+        <h2>我 的 最 愛</h2>
+    </div>
+    <div id="dataInfo">
+        <table>
+            <thead>
+                <tr>
+                    <th>主題</th>
+                    <th>回覆量</th>
+                    <th>加入時間</th>
+                    <th>備註</th>
+                    <th>刪除</th>
+                    <th>編輯</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tr in favo_info.res %}
+                <tr>
+                    <td> <a href="{{ tr.url }}">{{ tr.title | truncatechars:'25' }}</a></td>
+                    <td>{{ tr.reports }}</td>
+                    <td>{{ tr.b_time }}</td>
+                    <td>{{ tr.note | truncatechars:'10' }}</td>
+                    <td><a href="/favorite/del/{{ tr.article_id }}">刪除</a></td>
+                    <td><a href="/favorite/edit/{{ tr.article_id }}">編輯</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock body %}

@@ -1,0 +1,182 @@
+{% extends 'index/banner.html' %}
+{% block title %} <title>首頁</title> {% endblock title %}
+{% block css %}
+<link href="/static/css/index.css" rel="stylesheet">{% endblock css%}
+{% block body %}
+<div id="main">
+    <div id="categoryList">
+        <div class="category"><a href="/index/?name={{ cur_name }}&category=景點">景點</a></div>
+        <div class="category"><a href="/index/?name={{ cur_name }}&category=行程">行程</a></div>
+        <div class="category"><a href="/index/?name={{ cur_name }}&category=交通">交通</a></div>
+        <div class="category"><a href="/index/?name={{ cur_name }}&category=其他">其他</a></div>
+        <div class="category"><a href="/index/?name={{ cur_name }}&category=住宿">住宿</a></div>
+        <div class="category"><a href="/index/?name={{ cur_name }}&category=飲食">飲食</a></div>
+        <div class="category"><a href="/index/?name={{ cur_name }}&category=購物">購物</a></div>
+        <div class="category"><a href="/index/?name={{ cur_name }}&category=遊記">遊記</a></div>
+        <div class="category"><a href="/index/?name={{ cur_name }}&category=金錢">金錢</a></div>
+        <div class="category"><a href="/index/?name={{ cur_name }}&category=證件">證件</a></div>
+    </div>
+</div>
+
+<div id="search">
+    <form action="/index/?selLocation={{ selLocation }}&selName={{ selName }}&title={{ title }}" method="get">
+        <div>
+        <select class="sel" name="selLocation" id="selID1">
+            <option {% if cur_selLocation == '區域' %}selected{% endif %} value="">區域</option>
+            <option {% if cur_selLocation == '日本綜合' %}selected{% endif %}>日本綜合</option>
+            <option {% if cur_selLocation == '日本沖繩' %}selected{% endif %}>日本沖繩</option>
+            <option {% if cur_selLocation == '日本中國四國' %}selected{% endif %}>日本中國四國</option>
+            <option {% if cur_selLocation == '日本九州' %}selected{% endif %}>日本九州</option>
+            <option {% if cur_selLocation == '日本關西' %}selected{% endif %}>日本關西</option>
+            <option {% if cur_selLocation == '日本中部' %}selected{% endif %}>日本中部</option>
+            <option {% if cur_selLocation == '日本關東' %}selected{% endif %}>日本關東</option>
+            <option {% if cur_selLocation == '日本東北' %}selected{% endif %}>日本東北</option>
+            <option {% if cur_selLocation == '日本北海道' %}selected{% endif %}>日本北海道</option>
+        </select>
+        <select class="sel" name="selCategory" id="selID2">
+            <option {% if cur_selCategory == '類別' %}selected{% endif %} value="">類別</option>
+            <option {% if cur_selCategory == '景點' %}selected{% endif %}>景點</option>
+            <option {% if cur_selCategory == '行程' %}selected{% endif %}>行程</option>
+            <option {% if cur_selCategory == '交通' %}selected{% endif %}>交通</option>
+            <option {% if cur_selCategory == '其他' %}selected{% endif %}>其他</option>
+            <option {% if cur_selCategory == '住宿' %}selected{% endif %}>住宿</option>
+            <option {% if cur_selCategory == '飲食' %}selected{% endif %}>飲食</option>
+            <option {% if cur_selCategory == '購物' %}selected{% endif %}>購物</option>
+            <option {% if cur_selCategory == '遊記' %}selected{% endif %}>遊記</option>
+            <option {% if cur_selCategory == '金錢' %}selected{% endif %}>金錢</option>
+            <option {% if cur_selCategory == '證件' %}selected{% endif %}>證件</option>
+        </select>
+        </div>
+        <input type="text" name="title" id="searchbar" value="{{ cur_title }}">
+        <input type="submit" class="btn" value="搜尋">
+        <input type="button" class="btn" id="reset" value="重置">
+    </form>
+    <script>
+        var obt = document.getElementById("reset");
+        obt.onclick=function(){
+            var osel1 = document.getElementById("selID1");
+            var osel2 = document.getElementById("selID2");
+            var oinp = document.getElementById("searchbar");
+            osel1.selectedIndex = 0;
+            osel2.selectedIndex = 0;
+            oinp.value = '';
+        }
+    </script>
+</div>
+<div id="dataInfo">
+    <table>
+        <thead>
+            <tr>
+                <!-- <th>編號</th> -->
+                <th>區域</th>
+                <th>類別</th>
+                <th>主題</th>
+                <th>回覆量</th>
+                <th>收藏</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bp in page.data %}
+            <tr class="trs">
+                <td>{{ bp.name }}</td>
+                <td>{{ bp.category }}</td>
+                <td><a class="link" href="{{ bp.url }}">{{ bp.title }}</a></td>
+                <td>{{ bp.reports }}</td>
+                {% if not bp.user_id %}
+                <td><a class="link" href="/favorite/add/{{ bp.articlenum }}">收藏</a></td>
+                {% else %}
+                <td><a class="link" href="#">已收藏</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div id="page">
+        {% if page.has_previous and cur_name and cur_category %}
+        <a href="/index/?page={{ page.previous_page_number }}&name={{ cur_name }}&category={{ cur_category }}">上一頁</a>
+
+        {% elif page.has_previous and cur_selLocation and cur_selCategory and cur_title %}
+        <a href="/index/?page={{ page.previous_page_number }}&name={{ cur_selLocation }}&category={{ cur_selCategory }}&title={{ cur_title }}">上一頁</a>
+
+        {% elif page.has_previous and cur_selLocation and cur_selCategory %}
+        <a href="/index/?page={{ page.previous_page_number }}&name={{ cur_selLocation }}&category={{ cur_selCategory }}">上一頁</a>
+
+        {% elif page.has_previous and cur_selLocation and cur_title %}
+        <a href="/index/?page={{ page.previous_page_number }}&name={{ cur_selLocation }}&title={{ cur_title }}">上一頁</a>
+
+        {% elif page.has_previous and cur_selCategory and cur_title %}
+        <a href="/index/?page={{ page.previous_page_number }}&category={{ cur_selCategory }}&title={{ cur_title }}">上一頁</a>
+        
+        {% elif page.has_previous and cur_name %}
+        <a href="/index/?page={{ page.previous_page_number }}&name={{ cur_name }}">上一頁</a>
+
+        {% elif page.has_previous and cur_category %}
+        <a href="/index/?page={{ page.previous_page_number }}&category={{ cur_category }}">上一頁</a>
+
+        {% elif page.has_previous and cur_selLocation %}
+        <a href="/index/?page={{ page.previous_page_number }}&selLocation={{ cur_selLocation }}">上一頁</a>
+
+        {% elif page.has_previous and cur_selCategory %}
+        <a href="/index/?page={{ page.previous_page_number }}&selCategory={{ cur_selCategory }}">上一頁</a>
+
+        {% elif page.has_previous and cur_title %}
+        <a href="/index/?page={{ page.previous_page_number }}&title={{ cur_title }}">上一頁</a>
+
+        {% elif page.has_previous %}
+        <a href="/index/?page={{ page.previous_page_number }}">上一頁</a>
+
+        {% else %}
+        <p>上一頁</p> 
+        {% endif %}
+
+        <!-- {% for p in paginator.page_range %}
+    {% if p == page.number %}
+    {{ p }}
+    {% else %}
+    <a href="/index/?page={{ p }}">{{ p }}</a>
+    {% endif %}
+    {% endfor %} -->
+        &nbsp
+        {{ page.cur_page }} &nbsp of &nbsp {{ page.page_num }}
+        &nbsp
+
+        {% if page.has_next and cur_name and cur_category %}
+        <a href="/index/?page={{ page.next_page_number }}&name={{ cur_name }}&category={{ cur_category }}">下一頁</a>
+        
+        {% elif page.has_next and cur_selLocation and cur_selCategory and cur_title %}
+        <a href="/index/?page={{ page.next_page_number }}&selLocation={{ cur_selLocation }}&selCategory={{ cur_selCategory }}&title={{ cur_title }}">下一頁</a>
+
+        {% elif page.has_next and cur_selLocation and cur_selCategory %}
+        <a href="/index/?page={{ page.next_page_number }}&selLocation={{ cur_selLocation }}&selCategory={{ cur_selCategory }}">下一頁</a>
+
+        {% elif page.has_next and cur_selLocation and cur_title %}
+        <a href="/index/?page={{ page.next_page_number }}&selLocation={{ cur_selLocation }}&title={{ cur_title }}">下一頁</a>
+
+        {% elif page.has_next and cur_selCategory and cur_title %}
+        <a href="/index/?page={{ page.next_page_number }}&selCategory={{ cur_selCategory }}&title={{ cur_title }}">下一頁</a>
+
+        {% elif page.has_next and cur_name %}
+        <a href="/index/?page={{ page.next_page_number }}&name={{ cur_name }}">下一頁</a>
+
+        {% elif page.has_next and cur_category %}
+        <a href="/index/?page={{ page.next_page_number }}&category={{ cur_category }}">下一頁</a>
+
+        {% elif page.has_next and cur_selCategory %}
+        <a href="/index/?page={{ page.next_page_number }}&selCategory={{ cur_selCategory }}">下一頁</a>
+
+        {% elif page.has_next and cur_selLocation%}
+        <a href="/index/?page={{ page.next_page_number }}&selLocation={{ cur_selLocation }}">下一頁</a>
+
+        {% elif page.has_next and cur_title %}
+        <a href="/index/?page={{ page.next_page_number }}&title={{ cur_title }}">下一頁</a>
+
+        {% elif page.has_next %}
+        <a href="/index/?page={{ page.next_page_number }}">下一頁</a>
+
+        {% else %}
+        <p>下一頁</p> 
+        {% endif %}
+    </div>
+</div>
+{% endblock body%}

@@ -1,0 +1,49 @@
+{% extends 'index/banner.html' %}
+{% block title %} <title>註冊</title> {% endblock title %}
+{% block css %}<link href="/static/css/register.css" rel="stylesheet">{% endblock css%}
+{% block body %}
+    <div id="headname">
+        會 員 註 冊
+    </div>
+    <div id="reg">
+        <form action="/user/register" method="post">
+            {% csrf_token %}
+            <div class="inputdiv">
+                <label for="username">*會員名稱：</label>
+                <input type="text" class="pad" id="username" name="username">
+                <span class="errorinfo">{{ username_error }}</span>
+
+            </div>
+            <div class="inputdiv">
+                <label for="email">*電子郵件：</label>
+                <input type="email" id="email" class="pad" name="email">
+                <span class="errorinfo">{{ email_error }}</span>
+                
+            </div>
+            <div class="inputdiv">
+                <label for="pwd1">*登入密碼：</label>
+                <input type="password" id="pwd" class="pad" name="pwd1">
+                <p id="inputp">*長度8個字元以上不含空白字元</p>
+                <span class="errorinfo">{{ pwd1_error }}</span>
+            </div>
+            <div class="inputdiv">
+                <label for="pwd2">*確認密碼：</label>
+                <input type="password" id="pwd" class="pad" name="pwd2">
+                <p id="inputp">*長度8個字元以上不含空白字元</p>
+                <span class="errorinfo">{{ pwd2_error }}</span>
+            </div>
+            
+            <div id="hrdiv">
+                <hr>
+            </div>
+            <div id="btndiv">
+                <label for=""></label>
+                <input type="submit" class="btn" value="註冊">
+            </div>
+            <div id="ismember">
+                <label for=""></label>
+                已經是會員了嗎？<a href="/user/login.html">立即登入</a>。
+            </div>
+        </form>
+    </div>
+{% endblock body %}

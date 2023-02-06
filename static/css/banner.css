@@ -1,0 +1,112 @@
+@charset "UTF8";
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #222;
+            font-family: Arial, "Microsoft JhengHei", Helvetica, sans-serif;
+        }
+
+        .main {
+            background-color: white;
+            padding: 0px;
+            width: auto;
+            border: 1px solid rgb(218, 218, 218);
+        }
+
+        #banner {
+            width: 100%;
+            overflow: hidden;
+            font-size: 25px;
+            margin: 0 auto;
+            border-top: 3px solid #30a651;
+            border-bottom: 1px solid #dadada;
+            background-color: white;
+        }
+
+        #banner .bhbanner {
+            width: 33%;
+            float: left;
+        }
+
+        #left {
+            font-size: 150%;
+            font-weight: 600;
+        }
+
+        #left p {
+            float: right;
+            padding-right: 50px;
+            padding-top: 10px;
+        }
+
+        #center {
+            border-left: 1px solid rgb(218, 218, 218);
+            border-right: 1px solid rgb(218, 218, 218);
+            text-align: center;
+        }
+
+        
+         #center p{
+            height: 30px;
+            padding-top: 44px;
+            text-align: center;
+            line-height: 1px;
+            display: inline-block;
+        }
+        
+        #center a{
+            text-align: center;
+            font-size: 80%;
+            text-decoration: none;
+            font-weight: 600;
+            color: rgb(48, 166, 81);
+        }    
+        
+
+        #center a:hover {
+            color: rgb(35, 128, 61);
+        }
+
+        #right a {
+            padding-top: 26px;
+            padding-left: 20px;
+            float: left;
+            font-size: 80%;
+            text-decoration: none;
+            font-weight: 600;
+            color: rgb(48, 166, 81);
+        }
+
+        #right a:hover {
+            color: rgb(35, 128, 61);
+        }
+
+        #subbanner {
+            width: 600px;
+            height: 42px;
+            padding-top: 15px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .bhsubb {
+            float: left;
+        }
+
+        .bhsubb a {
+            text-decoration: none;
+            /* border: 1px solid red; */
+            color: black;
+            padding: 20px 12px 15px;
+            font-size: 20px;
+        }
+
+        .bhsubb a:hover {
+            background-color: rgb(48, 166, 81);
+            color: white;
+        }

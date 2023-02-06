@@ -1,0 +1,44 @@
+{% extends 'index/banner.html' %}
+{% block title %} <title>登入</title> {% endblock title %}
+{% block css %}<link href="/static/css/login.css" rel="stylesheet">{% endblock css%}
+{% block body %}
+    <div id="headname">
+            會 員 登 入
+    </div>
+    <div id="login">
+        <form action="/user/login" method="post">
+            {% csrf_token %}
+            <div class="info">
+                <h3>{{ reg_res }}</h3>
+            </div>
+            <div class="inputdiv">
+                <label for="email">*電子郵件：</label>
+                <input type="email" id="email" class="pad" name="email" value="{{ email }}">
+            </div>
+            <div class="inputdiv">
+                <label for="pwd">*登入密碼：</label>
+                <input type="password" id="pwd" class="pad" name="pwd" value="{{ password }}">
+                <p id="inputp">*英文字母與數字組合，長度8個字元以上不含空白字元</p>
+            </div>
+            <div class="remdiv">
+                <input type="checkbox" name="remember" value="1" id="remember">
+                <label for="remember">記住我</label>
+            </div>
+            <div class="info">
+                <h3>{{ idOrPwd_error }}</h3>
+            </div>
+            
+            <div id="hrdiv">
+                <hr>
+            </div>
+            <div id="btndiv">
+                <label for="#"></label>
+                <input type="submit" class="btn" value="登入">
+            </div>
+            <div id="ismember">
+                <label for="#"></label>
+                還不是會員嗎？<a href="/user/register.html">立即註冊新帳號</a>。
+            </div>
+        </form>
+    </div>
+{% endblock body%}
